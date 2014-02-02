@@ -3,8 +3,8 @@
 Gem::Specification.new do |s|
   s.name        = 'worldcat-api'
   s.version     = '0.1.0'
-  s.authors     = ['Nathan Fixler']
-  s.email       = 'nathan@fixler.org'
+  s.authors     = ['Jason Stirnaman']
+  s.email       = 'jason.stirnaman@gmail.com'
   s.summary     = 'Ruby wrapper for the Worldcat Search API'
   s.description = 'Ruby wrapper for the Worldcat Search API'
 
