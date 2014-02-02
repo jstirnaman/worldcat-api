@@ -6,6 +6,8 @@ module Worldcat
 
     def initialize(wskey)
       self.class.default_params :wskey => wskey
+      self.class.default_params :servicelevel => 'full'
+      self.class.default_params :recordSchema => 'info=srw/schema/1/marcxml'
     end
 
     # Perform an SRU search of the Worldcat database and returns results.
