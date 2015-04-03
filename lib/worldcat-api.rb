@@ -1,1 +1,2 @@
-require File.expand_path('worldcat', __FILE__)
+require_relative 'worldcat'
+require_relative '../config/worldcat'

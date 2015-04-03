@@ -1,8 +1,5 @@
-$:.unshift File.expand_path('../lib', File.dirname(__FILE__))
-
-require 'httparty'
-
-require 'worldcat/client'
+require "httparty"
+require_relative "worldcat/client"
 
 module Worldcat
 end
