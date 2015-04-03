@@ -1,8 +1,8 @@
 require 'vcr'
-require_relative '../lib/worldcat'
+require_relative '../lib/worldcat-api'
 
-VCR.config do |c|
+VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/cassettes'
-  c.stub_with :webmock
-  c.filter_sensitive_data("<WSKEY>") { ENV.fetch("WCAPI_KEY") }
+  c.hook_into :webmock
+  c.filter_sensitive_data("<WSKEY>") { Worldcat::Config::Auth[:wskey] }
 end

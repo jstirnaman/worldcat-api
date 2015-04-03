@@ -1,21 +1,26 @@
 require 'spec_helper'
 
 describe Worldcat::Client do
-  let(:client) { Worldcat::Client.new(ENV['WCAPI_KEY']) }
+
+  let(:client) { Worldcat::Client.new(wskey: Worldcat::Config::AUTH[:wskey]) }
+
+  it 'has default params' do
+    expect(client.class.default_params).not_to be_empty
+  end
 
   it 'performs searches' do
     VCR.use_cassette('search_hobbits') do
       results = client.search('hobbits')
-      results.code.should == 200
-      results.should have_key('searchRetrieveResponse')
+      expect(results.code).to eq 200
+      expect(results).to have_key('searchRetrieveResponse')
     end
   end
 
   it 'finds bibliographic records by oclc number' do
     VCR.use_cassette('find_bibliographic_record_by_oclc') do
       result = client.get_record('50894')
-      result.code.should == 200
-      result.should have_key('record')
+      expect(result.code).to eq 200
+      expect(result).to have_key('record')
     end
   end
 
