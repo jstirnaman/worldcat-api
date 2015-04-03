@@ -3,11 +3,21 @@ module Worldcat
     include HTTParty
 
     base_uri 'http://www.worldcat.org/webservices/catalog'
+    attr_accessor :wskey, :servicelevel, :recordSchema
+    def initialize(options = {})
+      options.each do |k,v| 
+        instance_variable_set("@#{k}", v)
+      end
+      set_defaults
+    end
 
-    def initialize(wskey)
-      self.class.default_params :wskey => wskey
-      self.class.default_params :servicelevel => 'full'
-      self.class.default_params :recordSchema => 'info=srw/schema/1/marcxml'
+    def set_defaults
+      # Default params provided for all requests
+      self.class.default_params wskey: wskey
+      self.class.default_params servicelevel: servicelevel || 'full'
+      self.class.default_params recordSchema: recordSchema || 'info=srw/schema/1/marcxml'
+
+      raise "Client requires WSKey" if self.class.default_params[:wskey].nil?
     end
 
     # Perform an SRU search of the Worldcat database and returns results.
